@@ -19,3 +19,6 @@ else
     Console.WriteLine("Welcome, Guest!");
     discount = 0.0;
 }
+
+double after_discount_price = pre_discount_price * (1 - discount);
+Console.WriteLine($"Your price after the discount is {after_discount_price}");

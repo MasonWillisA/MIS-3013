@@ -1,0 +1,179 @@
+using System.Globalization;
+
+int choice = 0;
+bool running = true;
+
+while (running)
+{
+    Console.WriteLine("/nChoice List:");
+    Console.WriteLine("1. While Loop Q");
+    Console.WriteLine("2. Do-while Loop Q");
+    Console.WriteLine("3. For Loop Q");
+    Console.WriteLine("4. Exit");
+    Console.WriteLine("Please enter your choice:");
+    choice = Convert.ToInt16(Console.ReadLine());
+
+    if (choice == 1)
+    {
+        FirstQuestion();
+    }
+    else if (choice == 2)
+    {
+        SecondQuestion();
+    }
+    else if (choice == 3)
+    {
+        ThirdQuestion();
+    }
+    else if (choice == 4)
+    {
+        Console.WriteLine("Completed!");
+        running = false;
+    }
+    else
+    {
+        Console.WriteLine("Please enter a valid option.");
+    }
+}
+
+static void FirstQuestion()
+{
+    double totalPrice = 0;
+    double itemPrice = 0;
+    int managerPin = 1234;
+    bool shopping = true;
+
+    Console.WriteLine("--- Smart Checkout System ---");
+    Console.WriteLine("Please enter the item price (enter 0 to finish):");
+
+    while (shopping)
+    {
+        Console.WriteLine("Scan item price:");
+        itemPrice = Convert.ToDouble(Console.ReadLine());
+
+        if (itemPrice == 0)
+        {
+            shopping = false;
+            break;
+        }
+
+        if (itemPrice >= 100)
+        {
+            Console.WriteLine("! Manager approval required for high-value item ($100+) !");
+            Console.WriteLine("Manager, please enter override PIN:");
+            int enteredPin = Convert.ToInt32(Console.ReadLine());
+
+            if (enteredPin == managerPin)
+            {
+                Console.WriteLine("Correct PIN. Item is approved and added.");
+                totalPrice += itemPrice;
+            }
+            else
+            {
+                Console.WriteLine("Incorrect PIN. Item is rejected and not added.");
+            }
+        }
+        else
+        {
+            totalPrice += itemPrice;
+        }
+        Console.WriteLine("Current total: ${0}", totalPrice);
+    }
+    Console.WriteLine("---------------------------------");
+    Console.WriteLine();
+    Console.WriteLine("Your Receipt Total: ${0}", totalPrice);
+    Console.WriteLine("Thank you for shopping with us!");
+    Console.WriteLine();
+    Console.WriteLine();
+    Console.WriteLine();
+}
+
+static void SecondQuestion()
+{
+    string enteredPassword = "";
+    string correctPassword = "mis3013isgreat!";
+    double attemptsUsed = 0;
+    double maxAttempts = 3;
+    bool isAccessGranted = false;
+
+    Console.WriteLine("--- Password Cracker ---");
+
+    do
+    {
+        Console.WriteLine("Please enter the security password:");
+        enteredPassword = Console.ReadLine();
+        attemptsUsed++;
+
+        if (enteredPassword == correctPassword)
+        {
+            isAccessGranted = true;
+        }
+        else if (attemptsUsed < maxAttempts)
+        {
+            Console.WriteLine("Incorrect. You have {0} attempts remaining.", maxAttempts - attemptsUsed);
+        }
+    }
+    while (!isAccessGranted && attemptsUsed < maxAttempts);
+
+    Console.WriteLine();
+
+    if (isAccessGranted)
+    {
+        Console.WriteLine("Access granted.");
+    }
+    else
+    {
+        Console.WriteLine("Security Lockdown Initiated!");
+    }
+
+    Console.WriteLine();
+    Console.WriteLine("Press any key to return to menu...");
+    Console.ReadKey();
+}
+
+static void ThirdQuestion()
+{
+    double countdownTime = 10;
+
+    Console.WriteLine("--- Rocket Launch Pad ---");
+    Console.WriteLine();
+
+    for (int i = 10; i >= 1; i--)
+    {
+        Console.WriteLine(i);
+
+        if (i == 7)
+        {
+            Console.WriteLine("[SYSTEM]: Checking fuel levels... OK.");
+        }
+
+        else if (i == 4)
+        {
+            Console.WriteLine("[SYSTEM]: Oxygen pressure... stabilized.");
+        }
+
+        else if (i == 1)
+        {
+            Console.WriteLine("[SYSTEM]: Ignition sequence... START.");
+        }
+
+        System.Threading.Thread.Sleep(100);
+    }
+
+    Console.WriteLine("0 - BLAST OFF!");
+    Console.WriteLine();  
+
+    Console.WriteLine(" | ");
+    Console.WriteLine(" / \\ ");
+    Console.WriteLine(" / _ \\");
+    Console.WriteLine(" | |");
+    Console.WriteLine(" | (R) |");
+    Console.WriteLine(" |_____|");
+    Console.WriteLine(" V V V ");
+
+    for (int j = 0; j < 20; j++)
+    {
+        Console.WriteLine();
+        System.Threading.Thread.Sleep(100);
+    }
+}

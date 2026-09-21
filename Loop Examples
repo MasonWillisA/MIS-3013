@@ -157,7 +157,7 @@ static void ThirdQuestion()
             Console.WriteLine("[SYSTEM]: Ignition sequence... START.");
         }
 
-        System.Threading.Thread.Sleep(100);
+        System.Threading.Thread.Sleep(1000);
     }
 
     Console.WriteLine("0 - BLAST OFF!");

@@ -1,20 +1,13 @@
-using System;
-string input = "hENRY JAMES";
-string clean = input.ToLower();
-string[] nameParts = clean.Split(' ');
+string name = "hENRY JAMES";
+string loweredName = name.ToLower();
+Console.WriteLine(loweredName);
 
-string formattedName = "";
-foreach (string part in nameParts)
-{
-    string firstLetter = part.Substring(0, 1).ToUpper();
-    string restOfWord = part.Substring(1);
-    formattedName += firstLetter + restOfWord + " ";
-}  
+string [] names = name.Split();
+string firstName = names[0];
+string lastName = names[1];
 
-formattedName = formattedName.Trim();
-Console.WriteLine("ID BADGE");
-Console.WriteLine("--------");
-Console.WriteLine(formattedName);
+string initial = $"{firstName[0]}{lastName[0]}" .ToUpper();
+Console.WriteLine(initial);
 
 string cardNumber = "1234567812345678";
 int length = cardNumber.Length; 

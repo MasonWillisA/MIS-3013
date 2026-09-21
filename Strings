@@ -1,0 +1,33 @@
+using System;
+string input = "hENRY JAMES";
+string clean = input.ToLower();
+string[] nameParts = clean.Split(' ');
+
+string formattedName = "";
+foreach (string part in nameParts)
+{
+    string firstLetter = part.Substring(0, 1).ToUpper();
+    string restOfWord = part.Substring(1);
+    formattedName += firstLetter + restOfWord + " ";
+}  
+
+formattedName = formattedName.Trim();
+Console.WriteLine("ID BADGE");
+Console.WriteLine("--------");
+Console.WriteLine(formattedName);
+
+string cardNumber = "1234567812345678";
+int length = cardNumber.Length; 
+string lastFour = cardNumber.Substring(length - 4, 4);
+
+string masked = "";
+for (int i = 0; i < length - 4; i++)
+{
+    masked += "*";
+}
+
+string result = masked + lastFour;
+
+Console.WriteLine("CARD NUMBER");
+Console.WriteLine("-----------");
+Console.WriteLine(result);

@@ -1,25 +1,47 @@
 Console.WriteLine();
+Console.WriteLine("PRACTICE #1: Editing Capitalization");
+Console.WriteLine("-----------------------------------");
+Console.WriteLine();
 
+Console.WriteLine("Entered Name:");
 string name = "hENRY JAMES";
 string loweredName = name.ToLower();
 Console.WriteLine(loweredName);
+Console.WriteLine();
 
+Console.WriteLine("Full Lowercase Name:");
 string [] names = loweredName.Split();
 string firstName = names[0];
 string lastName = names[1];
 Console.WriteLine(firstName);
 Console.WriteLine(lastName);
+Console.WriteLine();
 
+Console.WriteLine("Capitalized First Name:");
+string first = $"{char.ToUpper(firstName[0])}{names[0].Substring(1).ToLower()}";
+Console.WriteLine(first);
+Console.WriteLine();
+
+Console.WriteLine("Capitalized Last Name:");
+string last = $"{char.ToUpper(lastName[0])}{names[1].Substring(1).ToLower()}";
+Console.WriteLine(last);
+Console.WriteLine();
+
+Console.WriteLine("Initials:");
 string initial = $"{firstName[0]}{lastName[0]}" .ToUpper();
 Console.WriteLine(initial);
+Console.WriteLine();
 
+Console.WriteLine("Full Properly Capitalized Name:");
 string properName = $"{char.ToUpper(firstName[0])}{firstName.Substring(1).ToLower()} {char.ToUpper(lastName[0])}{lastName.Substring(1).ToLower()}";
 Console.WriteLine(properName);
+Console.WriteLine();
 
+Console.WriteLine("PRACTICE #2: Masking Credit Card Numbers");
+Console.WriteLine("----------------------------------------");
 Console.WriteLine();
 
 string creditCardNumber = "1234567812345678";
 string maskedCreditCardNumber = "**** **** **** " + creditCardNumber.Substring(creditCardNumber.Length - 4);
 Console.WriteLine(maskedCreditCardNumber);
-
 Console.WriteLine();

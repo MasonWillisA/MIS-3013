@@ -3,6 +3,8 @@ using System.Threading;
 int choice = 0;
 bool running = true;
 
+Console.WriteLine();
+
 while (running)
 {
     Console.WriteLine("/nChoice List:");
@@ -36,12 +38,16 @@ while (running)
     }
 }
 
+Console.WriteLine();
+
 static void FirstQuestion()
 {
     double totalPrice = 0;
     double itemPrice = 0;
     int managerPin = 1234;
     bool shopping = true;
+
+    Console.WriteLine();
 
     Console.WriteLine("--- Smart Checkout System ---");
     Console.WriteLine("Please enter the item price (enter 0 to finish):");
@@ -88,6 +94,7 @@ static void FirstQuestion()
     Console.WriteLine();
 }
 
+
 static void SecondQuestion()
 {
     string enteredPassword = "";
@@ -95,6 +102,8 @@ static void SecondQuestion()
     double attemptsUsed = 0;
     double maxAttempts = 3;
     bool isAccessGranted = false;
+    
+    Console.WriteLine();
 
     Console.WriteLine("--- Password Cracker ---");
 
@@ -134,6 +143,8 @@ static void SecondQuestion()
 static void ThirdQuestion()
 {
     double countdownTime = 10;
+
+    Console.WriteLine();
 
     Console.WriteLine("--- Rocket Launch Pad ---");
     Console.WriteLine();
@@ -177,3 +188,4 @@ static void ThirdQuestion()
         System.Threading.Thread.Sleep(100);
     }
 }
+Console.WriteLine();

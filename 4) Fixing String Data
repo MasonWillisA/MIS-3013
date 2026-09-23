@@ -4,9 +4,11 @@ string name = "hENRY JAMES";
 string loweredName = name.ToLower();
 Console.WriteLine(loweredName);
 
-string [] names = name.Split();
+string [] names = loweredName.Split();
 string firstName = names[0];
 string lastName = names[1];
+Console.WriteLine(firstName);
+Console.WriteLine(lastName);
 
 string initial = $"{firstName[0]}{lastName[0]}" .ToUpper();
 Console.WriteLine(initial);
@@ -17,7 +19,7 @@ Console.WriteLine(properName);
 Console.WriteLine();
 
 string creditCardNumber = "1234567812345678";
-string maskedCreditCardNumber = "**** **** **** " + creditCardNumber.Substring(12);
+string maskedCreditCardNumber = "**** **** **** " + creditCardNumber.Substring(creditCardNumber.Length - 4);
 Console.WriteLine(maskedCreditCardNumber);
 
 Console.WriteLine();

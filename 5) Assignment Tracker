@@ -1,0 +1,111 @@
+class Program
+{
+    static void Main()
+    {
+        // courses array
+        string[] courses = new string[0]; // options 1, 2
+
+        // declare an empty list
+        List<string> assignments = new List<string>(); // options 3, 4, 5, 7
+
+        // declare an empty dictionary
+        Dictionary<string, string> assignmentDetails = new Dictionary<string, string>(); // options 6, 7
+        
+        bool running = true;
+
+        while (running)
+        {
+            Console.WriteLine("Assignment Tracker \n");
+            Console.WriteLine("1.");
+            Console.WriteLine("2.");
+            Console.WriteLine("3.");
+            Console.WriteLine("4.");
+            Console.WriteLine("5.");
+            Console.WriteLine("6.");
+            Console.WriteLine("7.");
+            Console.WriteLine("8. Exit");
+            Console.WriteLine("Please enter your choice:");
+            int choice = Convert.ToInt16(Console.ReadLine());
+
+            if (choice = 1)
+            {
+                // function 1 - create course array
+                // ask for the number of courses
+
+                Console.WriteLine("\nHow many courses do you have?");
+                int numberOfCourses = Convert.ToInt16(Console.ReadLine());
+
+                // create/update array
+                courses = new string[numberOfCourses];
+
+                // use a loop to capture each course name
+                for (int i = 0; i < courses.Length; i++);
+                {
+                    Console.Write($"Enter course {i}:");
+                    courses[i] = Console.ReadLine(); // value assignment
+                }
+
+                Console.WriteLine("\nThe course array:")
+                // display the index and value of the array
+                for (int i = 0; i < courses.Length; i++)
+                {
+                    Console.WriteLine($"{i}: {courses[i]}");
+                }
+            }
+
+            else if (choice = 2)
+            {
+                // function 2
+                // ensure the array length is not 0
+
+                if (courses.Length == 0)
+                {
+                    Console.WriteLine("\nThe courses array has not been created yet. Please choose option 1 first.")
+                }
+
+                else
+                {
+                    // the rest of function 2 to update the element of the array
+                }
+            }
+
+            else if (choice = 3)
+            {
+                // function 3
+                // assignment[i] = "";
+                for (int i = 0; i < assignments.Count; i++)
+                {
+                    // Console.WriteLine(assignments[i]); // for display
+                    // assignments[i] = ''; // for value assignment
+                }
+
+
+            }
+
+            else if (choice = 4)
+            {
+                // function 4
+            }
+
+            else if (choice = 5)
+            {
+                // function 5
+            }
+
+            else if (choice = 6)
+            {
+                // function 6
+            }
+
+            else if (choice = 7)
+            {
+                // function 7
+            }
+
+            else (choice = 8)
+            {
+                Console.WriteLine("Invalid choice. Please enter options 1-8:");
+            }
+        }
+    }
+}

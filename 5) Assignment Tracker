@@ -2,161 +2,163 @@ class Program
 {
     static void Main()
     {
-        // courses array
-        string[] courses = new string[0]; // options 1, 2
-
-        // declare an empty list
-        List<string> assignments = new List<string>(); // options 3, 4, 5, 7
-
-        // declare an empty dictionary
-        Dictionary<string, string> assignmentDetails = new Dictionary<string, string>(); // options 6, 7
-        
+        // ARRAY: stores course names (options 1, 2)
+        string[] courses = new string[0];
+ 
+        // LIST: stores assignment names (options 3, 4, 5, 7)
+        List<string> assignments = new List<string>();
+ 
+        // DICTIONARY: key = assignment name, value = description - progress status (options 6, 7)
+        Dictionary<string, string> assignmentDetails = new Dictionary<string, string>();
+ 
         bool running = true;
-
+ 
         while (running)
         {
-            Console.WriteLine("Assignment Tracker \n");
-            Console.WriteLine("1. Add Course");
-            Console.WriteLine("2. Update Course");
-            Console.WriteLine("3. Add Assignment");
-            Console.WriteLine("4. Update Assignment");
-            Console.WriteLine("5. Add or Update Description");
-            Console.WriteLine("6. Remove Assignment by Name");
-            Console.WriteLine("7. Remove Assignment by Index");
+            Console.WriteLine();
+            Console.WriteLine("\nAssignment Tracker \n");
+            Console.WriteLine("1. Create Course (Array)");
+            Console.WriteLine("2. Update Course (Array)");
+            Console.WriteLine("3. Add Assignment (List)");
+            Console.WriteLine("4. Update Assignment (List)");
+            Console.WriteLine("5. Remove Assignment by Index (List)");
+            Console.WriteLine("6. Add or Update Assignment Details (Dictionary)");
+            Console.WriteLine("7. Remove Assignment by Name (List and Dictionary)");
             Console.WriteLine("8. Exit");
             Console.WriteLine("Please enter your choice:");
-            int choice = Convert.ToInt16(Console.ReadLine());
-
+ 
+            int choice;
+            if (!int.TryParse(Console.ReadLine(), out choice))
+            {
+                choice = -1; // falls through to the invalid option message
+            }
+ 
             if (choice == 1)
             {
                 // function 1 - create course array
-                // ask for the number of courses
-
                 Console.WriteLine("\nHow many courses do you have?");
-                int numberOfCourses = Convert.ToInt16(Console.ReadLine());
-
-                // create/update array
-                courses = new string[numberOfCourses];
-
-                // use a loop to capture each course name
-                for (int i = 0; i < courses.Length; i++)
+                int numberOfCourses;
+                bool validCount = int.TryParse(Console.ReadLine(), out numberOfCourses);
+ 
+                if (validCount && numberOfCourses >= 0)
                 {
-                    Console.Write($"Enter course {i}:");
-                    courses[i] = Console.ReadLine(); // value assignment
+                    courses = new string[numberOfCourses];
+ 
+                    for (int i = 0; i < courses.Length; i++)
+                    {
+                        Console.Write($"Enter course {i}: ");
+                        courses[i] = Console.ReadLine();
+                    }
+ 
+                    Console.WriteLine("\nThe course array:");
+                    for (int i = 0; i < courses.Length; i++)
+                    {
+                        Console.WriteLine(i + ". " + courses[i]);
+                    }
                 }
-
-                Console.WriteLine("\nThe course array:");
-                // display the index and value of the array
-                for (int i = 0; i < courses.Length; i++)
+                else
                 {
-                    Console.WriteLine($"{i}: {courses[i]}");
+                    Console.WriteLine("Invalid number of courses.");
                 }
             }
-
+ 
             else if (choice == 2)
             {
-                // function 2
-                // ensure the array length is not 0
-
+                // function 2 - update course by index
                 if (courses.Length == 0)
                 {
                     Console.WriteLine("\nThe courses array has not been created yet. Please choose option 1 first.");
                 }
-
                 else
                 {
-                    // the rest of function 2 to update the element of the array
                     Console.WriteLine("\nCurrent courses:");
                     for (int i = 0; i < courses.Length; i++)
                     {
-                        Console.WriteLine($"{i}: {courses[i]}");
+                        Console.WriteLine(i + ". " + courses[i]);
                     }
-
-                    // request an index
+ 
                     Console.WriteLine("\nEnter the index of the course to update:");
                     int courseIndex;
                     bool validNumber = int.TryParse(Console.ReadLine(), out courseIndex);
-
-                    // validate bounds
+ 
                     if (validNumber && courseIndex >= 0 && courseIndex < courses.Length)
                     {
                         Console.Write("Enter the new course name: ");
-                        courses[courseIndex] = Console.ReadLine(); // replace the selected course
-
+                        courses[courseIndex] = Console.ReadLine();
+ 
                         Console.WriteLine("\nUpdated course array:");
                         for (int i = 0; i < courses.Length; i++)
                         {
-                            Console.WriteLine($"{i}: {courses[i]}");
+                            Console.WriteLine(i + ". " + courses[i]);
                         }
                     }
-
                     else
                     {
                         Console.WriteLine("Invalid course index.");
                     }
                 }
             }
-
+ 
             else if (choice == 3)
             {
-                // function 3
+                // function 3 - add assignments while response is y
                 Console.WriteLine("\nCurrent assignments:");
                 for (int i = 0; i < assignments.Count; i++)
                 {
-                    Console.WriteLine($"{i}. {assignments[i]}");
+                    Console.WriteLine(i + ". " + assignments[i]);
                 }
-
+ 
                 string response = "y";
                 while (response == "y")
                 {
                     Console.Write("\nEnter assignment name: ");
                     string newAssignment = Console.ReadLine();
                     assignments.Add(newAssignment);
-
+ 
                     Console.Write("Add another assignment? (y/n): ");
                     response = Console.ReadLine().Trim().ToLower();
                 }
-
+ 
                 Console.WriteLine("\nUpdated assignments:");
                 for (int i = 0; i < assignments.Count; i++)
                 {
-                    Console.WriteLine($"{i}. {assignments[i]}");
+                    Console.WriteLine(i + ". " + assignments[i]);
                 }
             }
-
+ 
             else if (choice == 4)
             {
-                // function 4
+                // function 4 - update assignment by index; move dictionary value to new key
                 Console.WriteLine("\nCurrent assignments:");
                 for (int i = 0; i < assignments.Count; i++)
                 {
-                    Console.WriteLine($"{i}. {assignments[i]}");
+                    Console.WriteLine(i + ". " + assignments[i]);
                 }
-
-                Console.WriteLine("\nEnter the index of the assignment to update: ");
+ 
+                Console.WriteLine("\nEnter the index of the assignment to update:");
                 int assignmentIndex;
                 bool validNumber = int.TryParse(Console.ReadLine(), out assignmentIndex);
-
-                if(validNumber && assignmentIndex >= 0 && assignmentIndex < assignments.Count)
+ 
+                if (validNumber && assignmentIndex >= 0 && assignmentIndex < assignments.Count)
                 {
                     string oldName = assignments[assignmentIndex];
-
-                    Console.WriteLine("Enter the new assignment name: ");
+ 
+                    Console.Write("Enter the new assignment name: ");
                     string newName = Console.ReadLine();
-
+ 
                     assignments[assignmentIndex] = newName;
-
+ 
                     if (assignmentDetails.ContainsKey(oldName))
                     {
                         string existingValue = assignmentDetails[oldName];
                         assignmentDetails.Remove(oldName);
                         assignmentDetails[newName] = existingValue;
                     }
-
+ 
                     Console.WriteLine("\nUpdated assignments:");
                     for (int i = 0; i < assignments.Count; i++)
                     {
-                        Console.WriteLine($"{i}. {assignments[i]}");
+                        Console.WriteLine(i + ". " + assignments[i]);
                     }
                 }
                 else
@@ -164,124 +166,35 @@ class Program
                     Console.WriteLine("Invalid assignment index.");
                 }
             }
-
+ 
             else if (choice == 5)
             {
-                // function 5
-                Console.WriteLine("\nCurrent assignment details:");
-                foreach (KeyValuePair<string, string> item in assignmentDetails)
-                {
-                    Console.WriteLine(item.Key + ": " + item.Value);
-                }
-
-                Console.WriteLine("\nEnter assignment name: ");
-                string detailAssignment = Console.ReadLine();
-
-                Console.Write("Enter description: ");
-                string description = Console.ReadLine();
-
-                Console.Write("Enter progress status: ");
-                string status = Console.ReadLine();
-
-                string details = description + " - " + status;
-                assignmentDetails[detailAssignment] = details;
-
-                Console.WriteLine("\nUpdated assignment details:");
-                foreach (KeyValuePair<string, string> item in assignmentDetails)
-                {
-                    Console.WriteLine(item.Key + ": " + item.Value);
-                }
-            }
-
-            else if (choice == 6)
-            {
-                // function 6
+                // function 5 - remove assignment by index (RemoveAt)
                 Console.WriteLine("\nCurrent assignments:");
                 for (int i = 0; i < assignments.Count; i++)
                 {
-                    Console.WriteLine($"{i}. {assignments[i]}");
+                    Console.WriteLine(i + ". " + assignments[i]);
                 }
-
-                Console.WriteLine("\nEnter the assignment name to remove: ");
-                string removeName = Console.ReadLine();
-
-                bool removed = assignments.Remove(removeName);
-
-                if (removed)
-                {
-                    Console.WriteLine("Assignment removed.");
-                }
-
-                else
-                {
-                    Console.WriteLine("Assignment not found.");
-                }
-
-                Console.WriteLine("\nUpdated assignments:");
-                for (int i = 0; i < assignments.Count; i++)
-                {
-                    Console.WriteLine($"{i}. {assignments[i]}");
-                }
-
-                Console.Write("\nDo you also want to remove a Dictionary entry? (y/n): ");
-                string removeDictionary = Console.ReadLine().Trim().ToLower();
-
-                if (removeDictionary == "y")
-                {
-                    Console.WriteLine("\nCurrent assignment details:");
-                    foreach (KeyValuePair<string, string> item in assignmentDetails)
-                    {
-                        Console.WriteLine(item.Key + ": " + item.Value);
-                    }
-
-                    Console.Write("\nEnter the Dictionary key to remove: ");
-                    string keyToRemove = Console.ReadLine();
-
-                    if (assignmentDetails.Remove(keyToRemove))
-                    {
-                        Console.WriteLine("Dictionary entry removed.");
-                        Console.WriteLine("\nUpdated assignment details:");
-                        foreach (KeyValuePair<string, string> item in assignmentDetails)
-                        {
-                            Console.WriteLine(item.Key + ": " + item.Value);
-                        }
-                    }
-                    
-                    else
-                    {
-                        Console.WriteLine("Dictionary key not found.");
-                    }
-                }
-            }
-
-            else if (choice == 7)
-            {
-                // function 7
-                Console.WriteLine("\nCurrent assignments:");
-                for (int i = 0; i < assignments.Count; i++)
-                {
-                    Console.WriteLine($"{i}. {assignments[i]}");
-                }
-
-                Console.WriteLine("\nEnter the index of the assignment to remove: ");
+ 
+                Console.WriteLine("\nEnter the index of the assignment to remove:");
                 int removeIndex;
                 bool validNumber = int.TryParse(Console.ReadLine(), out removeIndex);
-
+ 
                 if (validNumber && removeIndex >= 0 && removeIndex < assignments.Count)
                 {
                     assignments.RemoveAt(removeIndex);
                     Console.WriteLine("Assignment removed.");
-
+ 
                     Console.WriteLine("\nUpdated assignments:");
                     for (int i = 0; i < assignments.Count; i++)
                     {
-                        Console.WriteLine($"{i}. {assignments[i]}");
+                        Console.WriteLine(i + ". " + assignments[i]);
                     }
-
+ 
+                    // List and Dictionary removal remain separate user actions (BR-06)
                     Console.Write("\nDo you also want to remove a Dictionary entry? (y/n): ");
-
                     string removeDictionary = Console.ReadLine().Trim().ToLower();
-
+ 
                     if (removeDictionary == "y")
                     {
                         Console.WriteLine("\nCurrent assignment details:");
@@ -289,20 +202,19 @@ class Program
                         {
                             Console.WriteLine(item.Key + ": " + item.Value);
                         }
-
-                        Console.Write("Enter the Dictionary key to remove: ");
+ 
+                        Console.Write("\nEnter the Dictionary key to remove: ");
                         string keyToRemove = Console.ReadLine();
-
+ 
                         if (assignmentDetails.Remove(keyToRemove))
                         {
                             Console.WriteLine("Dictionary entry removed.");
-                            Console.WriteLine("\nUpdated assignment details");
+                            Console.WriteLine("\nUpdated assignment details:");
                             foreach (KeyValuePair<string, string> item in assignmentDetails)
                             {
                                 Console.WriteLine(item.Key + ": " + item.Value);
                             }
                         }
-                        
                         else
                         {
                             Console.WriteLine("Dictionary key not found.");
@@ -314,18 +226,104 @@ class Program
                     Console.WriteLine("Invalid assignment index.");
                 }
             }
-
+ 
+            else if (choice == 6)
+            {
+                // function 6 - add or update assignment details (Dictionary)
+                Console.WriteLine("\nCurrent assignment details:");
+                foreach (KeyValuePair<string, string> item in assignmentDetails)
+                {
+                    Console.WriteLine(item.Key + ": " + item.Value);
+                }
+ 
+                Console.Write("\nEnter assignment name: ");
+                string detailAssignment = Console.ReadLine();
+ 
+                Console.Write("Enter description: ");
+                string description = Console.ReadLine();
+ 
+                Console.Write("Enter progress status: ");
+                string status = Console.ReadLine();
+ 
+                string details = description + " - " + status;
+                assignmentDetails[detailAssignment] = details; // add or update
+ 
+                Console.WriteLine("\nUpdated assignment details:");
+                foreach (KeyValuePair<string, string> item in assignmentDetails)
+                {
+                    Console.WriteLine(item.Key + ": " + item.Value);
+                }
+            }
+ 
+            else if (choice == 7)
+            {
+                // function 7 - remove assignment by name (List.Remove), then optionally the Dictionary key
+                Console.WriteLine("\nCurrent assignments:");
+                for (int i = 0; i < assignments.Count; i++)
+                {
+                    Console.WriteLine(i + ". " + assignments[i]);
+                }
+ 
+                Console.WriteLine("\nEnter the assignment name to remove:");
+                string removeName = Console.ReadLine();
+ 
+                bool removed = assignments.Remove(removeName);
+ 
+                if (removed)
+                {
+                    Console.WriteLine("Assignment removed.");
+                }
+                else
+                {
+                    Console.WriteLine("Assignment not found.");
+                }
+ 
+                Console.WriteLine("\nUpdated assignments:");
+                for (int i = 0; i < assignments.Count; i++)
+                {
+                    Console.WriteLine(i + ". " + assignments[i]);
+                }
+ 
+                Console.Write("\nDo you also want to remove a Dictionary entry? (y/n): ");
+                string removeDictionary = Console.ReadLine().Trim().ToLower();
+ 
+                if (removeDictionary == "y")
+                {
+                    Console.WriteLine("\nCurrent assignment details:");
+                    foreach (KeyValuePair<string, string> item in assignmentDetails)
+                    {
+                        Console.WriteLine(item.Key + ": " + item.Value);
+                    }
+ 
+                    Console.Write("\nEnter the Dictionary key to remove: ");
+                    string keyToRemove = Console.ReadLine();
+ 
+                    if (assignmentDetails.Remove(keyToRemove))
+                    {
+                        Console.WriteLine("Dictionary entry removed.");
+                        Console.WriteLine("\nUpdated assignment details:");
+                        foreach (KeyValuePair<string, string> item in assignmentDetails)
+                        {
+                            Console.WriteLine(item.Key + ": " + item.Value);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Dictionary key not found.");
+                    }
+                }
+            }
+ 
             else if (choice == 8)
             {
-                // function 8
-
+                // function 8 - exit
                 Console.WriteLine("Good work!");
                 running = false;
             }
-
+ 
             else
             {
-                Console.WriteLine("Invalid choice. Please enter options 1-8:");
+                Console.WriteLine("Invalid option. Choose 1-8.");
             }
         }
     }

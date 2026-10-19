@@ -1,0 +1,20 @@
+using System;
+
+class Program
+{
+    static decimal SilverToUSD(decimal ounces)
+    {
+        return ounces * 57.75m;
+    }
+    static void Main()
+    {
+        decimal silverOunces = 0.0m;
+        // prompt the user input
+        Console.WriteLine("Enter the number of ounces of silver:");
+        silverOunces = Convert.ToDecimal(Console.ReadLine());
+
+        decimal totalUSD = 0.0m;
+        totalUSD = SilverToUSD(silverOunces);
+        Console.WriteLine($"Silver value in USD today: {totalUSD:C2}");
+    }
+}

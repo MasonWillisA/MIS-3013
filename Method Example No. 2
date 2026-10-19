@@ -1,0 +1,20 @@
+using System;
+
+class Program
+{
+    static decimal PlatinumToUSD(decimal ounces)
+    {
+        return ounces * 1634.00m; // Assuming the current price of platinum is $1634 per ounce
+    }
+    static void Main()
+    {
+        decimal platinumOunces = 0.0m;
+        // prompt the user input
+        Console.WriteLine("Enter the number of ounces of platinum:");
+        platinumOunces = Convert.ToDecimal(Console.ReadLine());
+
+        decimal totalUSD = 0.0m;
+        totalUSD = PlatinumToUSD(platinumOunces);
+        Console.WriteLine($"Valid in USD: {totalUSD:C2}");
+    }
+}

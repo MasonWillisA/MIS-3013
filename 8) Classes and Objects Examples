@@ -1,0 +1,75 @@
+public class Student // class
+{
+    public string name = "Tom"; // name field
+    public void Introduct() // method
+    {
+        Console.WriteLine($"Hello, my name is {name}.");
+    }
+}
+
+public class Program // class
+{
+    public static void Main()
+    {
+        Student StudentA = new Student(); // instantiate an object
+        StudentA.Introduct(); // method call
+
+        StudentA.name = "Mary";
+        StudentA.Introduce();
+    }
+}
+
+// Another version of the Student class with a constructor and an additional method
+
+public class Student
+{
+    public string name;
+    public int grade;
+
+    public Student(string studentName, int studentGrade) // constructor
+    {
+        name = studentName;
+        grade = studentGrade;
+    }
+
+    public void Introduce()
+    {
+        Console.WriteLine($"Hello, my name is {name}.");
+        Console.WriteLine($"My grade is {grade}.");
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        Student.StudentB = new Student("Jerry", 90);
+        StudentB.Introduce();
+    }
+}
+
+// Another version of the Student class with a constructor and an additional method
+
+public class Student(string studentName = "Unknown", int studentGrade = 0) // constructor with default parameters
+{
+    public string name = studentName;
+    public int grade = studentGrade;
+
+    public void Introduce()
+    {
+        Console.WriteLine($"Hello, my name is {name}.");
+        Console.WriteLine($"My grade is {grade}.");
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        Student StudentC = new Student(); // using default parameters
+        StudentC.Introduce();
+
+        Student StudentD = new Student("Alice", 85); // using custom parameters
+        StudentD.Introduce();
+    }
+}

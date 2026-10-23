@@ -1,0 +1,39 @@
+public class Student(string name, int grade)
+{
+    private string studentName = name;
+    private int studentGrade = grade;
+
+    public void Introduce()
+    {
+        string message = GetEncouragement();
+        Console.WriteLine($"Hello, my name is {studentName}");
+        Console.WriteLine($"I'm in grade {studentGrade}");
+        Console.WriteLine(message);
+    }
+
+    private string GetEncouragement()
+    {
+        string message;
+
+        if studentGrade >= 10)
+        {
+            message = "Keep up the great work!";
+        }
+        else
+        {
+            message = "Keep learning!";
+        }
+        return message;
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        Student studentA = newStudent("Emma", 10);
+        studentA.Introduce();
+
+        // string message = studentA.GetEncouragement(); // This line will cause an error because GetEncouragement is private
+    }
+}

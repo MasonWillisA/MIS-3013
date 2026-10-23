@@ -1,0 +1,41 @@
+// Example 1
+
+public static class TemperatureConverter // class name
+{
+    public static double CelsiusToFahrenheit(double celsius) // method name
+    {
+        return (celsius * 9 / 5) + 32;
+    }
+
+    public static double FahrenheitToCelsius(double fahrenheit) // method name
+    {
+        return (fahrenheit - 32) * 5 / 9;
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        double temperature = TemperatureConverter.CelsiusToFahrenheit(25);
+        Console.WriteLine(temperature);
+    }
+}
+
+// Example 2
+
+public class Laptop(string brand, int battery)
+{
+    private string laptopBrand = brand;
+    public int batteryLevel = battery;
+
+    private void Charge()
+    {
+        batteryLevel = 100;
+    }
+
+    public void ShowStatus()
+    {
+        Console.WriteLine($"Brand: {laptopBrand}, Battery Level: {batteryLevel}%");
+    }
+}

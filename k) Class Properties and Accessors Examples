@@ -1,0 +1,87 @@
+using System;
+
+// Example #1: Student class with custom properties
+
+public class Student
+{
+    private int score;
+
+    public int Score // property
+    {
+        get // accessor
+        {
+            return score;
+        }
+        set // accessor
+        {
+            score = value >= 0 ? value : 0; // assignment
+        }
+    }
+
+    public bool IsPassing // property
+    {
+        get
+        {
+            return score >= 60; // retrieval
+        }
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        Student student = new Student();
+        student.Score = 85;
+        Console.WriteLine(student.Score);
+        Console.WriteLine(student.IsPassing);
+    }
+}
+
+// Example #2: Book class with auto-implemented properties
+
+public class Book
+{
+    public string Title { get; set; }
+    public int PageCount { get; set; }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        Book book1 = new Book{Title = "The Secret Garden", PageCount = 240};
+        Book book2 = new Book{Title = "1984", PageCount = 328};
+
+        Console.WriteLine($"{book1.Title} has {book1.PageCount} pages.");
+        Console.WriteLine($"{book2.Title} has {book2.PageCount} pages.");
+    }
+}
+
+// Example #3: Expression-Bodied Members
+
+using System;
+
+public class GameCharacter
+{
+   private int health = 100;
+   public string Name { get; set; }
+   public int Health
+    {
+        get => health;
+        set => health = value >= 0 ? value : 0;
+    }
+
+    public bool IsAlive => Health > 0; // expression-bodied property
+    public void ShowStatus() => Console.WriteLine($"{Name}: {Health} HP");
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        GameCharacter character = new GameCharacter { Name = "Nova", Health = 80 };
+        character.ShowStatus();
+        Console.WriteLine(character.IsAlive);
+    }
+}

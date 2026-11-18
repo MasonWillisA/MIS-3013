@@ -1,0 +1,106 @@
+using System;
+using System.Formats.Asn1;
+using System.IO;
+using System.Transactions;
+
+// read entire file
+string filePath = "small_csv.csv";
+double totalMarket = 0.0;
+double countMarket = 0;
+double avgMarket = 0.0;
+
+double totalEng = 0.0;
+double countEng = 0;
+double avgEng = 0.0;
+
+string[] lines = File.ReadAllLines(filePath);
+
+foreach (string line in lines.Skip(1))
+{
+    string[] columns = line.Split(",");
+    string empID = columns[0];
+    string name = columns[1];
+    string department = columns[2];
+    double salary = double.Parse(columns[3]);
+    string joinDate = columns[4];
+
+    Console.WriteLine($"Employee ID: {empID}, Name: {name}, Department: {department}, Salary: {salary}, Joined Date: {joinDate}");
+
+    if (department == "Marketing")
+    {
+        totalMarket = totalMarket + salary;
+        countMarket = countMarket + 1;
+    }
+
+    if (department == "Engineering")
+    {
+        totalEng = totalEng + salary;
+        countEng = countEng + 1;
+    }
+}
+
+if (countMarket != 0)
+{
+    avgMarket = totalMarket / countMarket;
+}
+
+Console.WriteLine($"Marketing Department Average Salary: {avgMarket:C2}");
+
+if (countEng != 0)
+{
+    avgEng = totalEng / countEng;
+}
+
+Console.WriteLine($"Engineering Department Average Salary: {avgMarket:C2}");
+
+
+
+// read line by line
+
+
+
+totalMarket = 0.0;
+countMarket = 0;
+avgMarket = 0.0;
+
+File.WriteAllLines("newcsv.csv", lines);
+
+using (StreamWriter writer = new StreamWriter ("writer.csv",true))
+{
+    writer.WriteLine("EmployeeID,Name,Department,Salary,JoiningDate");
+    using (StreamReader reader = new StreamReader(filePath))
+    {
+        string header = reader.ReadLine();
+
+        string line_by_line;
+
+        while ((line_by_line = reader.ReadLine()) != null) // not at the end of the file
+        {
+            string[] columns = line_by_line.Split(",");
+            string empID = columns[0];
+            string name = columns[1];
+            string department = columns[2];
+            double salary = double.Parse(columns[3]);
+            string joinDate = columns[4];
+
+            Console.WriteLine($"Employee ID: {empID}, Name: {name}, Department: {department}, Salary: {salary}, Joined Date: {joinDate}");
+
+            writer.WriteLine($"{empID}, {name}, {department}, {salary}, {joinDate}");
+
+            if (department == "Engineering")
+            {
+                totalMarket = totalMarket + salary;
+                countMarket = countMarket + 1;
+            }
+        }
+    }
+}
+
+Console.WriteLine($"Engineering Department Average Salary: {avgMarket:C2}");
+
+writer.WriteLine($"106,Andrew Burton,Marketing,100000,2025-04-21");
+
+if (countMarket != 0)
+{
+    avgMarket = totalMarket / countMarket;
+}
